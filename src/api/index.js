@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "https://pabin-memo.herokuapp.com/posts";
+const url = "https://memo-pabin-limbu.herokuapp.com/posts";
 
 export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost);
