@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
 
-function App() {
+import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { getPosts } from "./actions/posts";
+
+import memories from "./images/memories.png";
+import Posts from "./components/Posts/Posts";
+import Form from "./components/Form/Form";
+import useStyles from "./styles";
+const App = () => {
+  const [currentId, setCurrentId] = useState(null);
+  const dispatch = useDispatch();
+  const classes = useStyles();
+
+  useEffect(() => {
+    console.log("reNDERING");
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Container maxWidth="lg">
+      <AppBar className={classes.appBar} position="static" color="inherit">
+        <Typography className={classes.heading} variant="h2" align="center">
+          Memo
+        </Typography>
+        <img
+          className={classes.image}
+          src={memories}
+          alt="memo image"
+          height="60"
+        />
+      </AppBar>
+      <Grow in>
+        <Grid
+          className={classes.mainContainer}
+          container
+          justify="space-between"
+          alignItems="stretch"
+          spacing={3}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Grid item xs={12} sm={7}>
+            <Posts setCurrentId={setCurrentId} />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Form currentId={currentId} setCurrentId={setCurrentId} />
+          </Grid>
+        </Grid>
+      </Grow>
+    </Container>
   );
-}
+};
 
 export default App;
