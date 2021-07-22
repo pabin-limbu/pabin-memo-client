@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   avatarStyle: { backgroundColor: blue[500] },
 });
 
-function RegisterForem(props) {
+function RegisterForm(props) {
   const [registerUsername, setRegisterusername] = useState("");
   const [registerUserPassword, setRegisteruserPassword] = useState();
   const [loginUserName, setloginUserName] = useState("");
@@ -233,4 +233,4 @@ function RegisterForem(props) {
   );
 }
 
-export default RegisterForem;
+export default RegisterForm;
