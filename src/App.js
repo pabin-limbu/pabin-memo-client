@@ -1,53 +1,29 @@
-import React, { useState, useEffect } from "react";
-
-import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import HomePage from "./container/Homepage";
+import LoginPage from "./container/LoginPage";
+import RegisterForem from "./components/RegisterForm";
+import { isUserLogedIn } from "./actions/user";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "./actions/posts";
-
-import memories from "./images/memories.png";
-import Posts from "./components/Posts/Posts";
-import Form from "./components/Form/Form";
-import useStyles from "./styles";
+import PrivateRoute from "./components/HOC/PrivateRoute";
 const App = () => {
-  const [currentId, setCurrentId] = useState(null);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const classes = useStyles();
-
   useEffect(() => {
-    console.log("reNDERING");
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
-
+    if (!user.authenticate) {
+      dispatch(isUserLogedIn());
+    }
+  }, [user.authenticate]);
   return (
-    <Container maxWidth="lg">
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h2" align="center">
-          Memo
-        </Typography>
-        <img
-          className={classes.image}
-          src={memories}
-          alt="memo image"
-          height="60"
-        />
-      </AppBar>
-      <Grow in>
-        <Grid
-          className={classes.mainContainer}
-          container
-          justify="space-between"
-          alignItems="stretch"
-          spacing={3}
-        >
-          <Grid item xs={12} sm={7}>
-            <Posts setCurrentId={setCurrentId} />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Form currentId={currentId} setCurrentId={setCurrentId} />
-          </Grid>
-        </Grid>
-      </Grow>
-    </Container>
+    <div className="App">
+      <Router>
+        <Switch>
+          <PrivateRoute path="/" exact component={HomePage}></PrivateRoute>
+          <Route path="/login" component={LoginPage}></Route>
+          <Route path="/register" component={RegisterForem}></Route>
+        </Switch>
+      </Router>
+    </div>
   );
 };
 
