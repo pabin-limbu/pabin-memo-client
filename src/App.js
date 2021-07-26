@@ -6,6 +6,7 @@ import RegisterForm from "./components/RegisterForm";
 import { isUserLogedIn } from "./actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import PrivateRoute from "./components/HOC/PrivateRoute";
+import PageNotFound from "./components/PageNotFound";
 const App = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/" exact component={HomePage}></Route>
           <Route path="/login" component={LoginPage}></Route>
           <Route path="/register" component={RegisterForm}></Route>
+          <Route component={PageNotFound}></Route>
         </Switch>
       </Router>
     </div>
