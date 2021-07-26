@@ -11,14 +11,15 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!user.authenticate) {
-      dispatch(isUserLogedIn());
+      //  dispatch(isUserLogedIn());
     }
   }, [user.authenticate]);
   return (
     <div className="App">
       <Router>
         <Switch>
-          <PrivateRoute path="/" exact component={HomePage}></PrivateRoute>
+          {/* <PrivateRoute path="/" exact component={HomePage}></PrivateRoute> */}
+          <Route path="/" exact component={HomePage}></Route>
           <Route path="/login" component={LoginPage}></Route>
           <Route path="/register" component={RegisterForm}></Route>
         </Switch>
