@@ -1,18 +1,16 @@
 import axios from "axios";
 import LoginForm from "../components/LoginForm";
-// const urls = "https://memo-pabin-limbu.herokuapp.com/posts";
-// const urlUser = "https://memo-pabin-limbu.herokuapp.com/register";
-// const urlGetUser = "https://memo-pabin-limbu.herokuapp.com/user";
-// const urlUserLogin = "https://memo-pabin-limbu.herokuapp.com/login";
-// const urlUserLogout = "https://memo-pabin-limbu.herokuapp.com/logout";
+const urls = "https://memo-pabin-limbu.herokuapp.com/posts";
+const urlUser = "https://memo-pabin-limbu.herokuapp.com/register";
+const urlGetUser = "https://memo-pabin-limbu.herokuapp.com/user";
+const urlUserLogin = "https://memo-pabin-limbu.herokuapp.com/login";
+const urlUserLogout = "https://memo-pabin-limbu.herokuapp.com/logout";
 
-
-
-const urls = "http://localhost:5000/posts";
-const urlUser = "http://localhost:5000/register";
-const urlGetUser = "http://localhost:5000/user";
-const urlUserLogin = "http://localhost:5000/login";
-const urlUserLogout = "http://localhost:5000/logout";
+// const urls = "http://localhost:5000/posts";
+// const urlUser = "http://localhost:5000/register";
+// const urlGetUser = "http://localhost:5000/user";
+// const urlUserLogin = "http://localhost:5000/login";
+// const urlUserLogout = "http://localhost:5000/logout";
 
 export const fetchPosts = () => axios.get(urls);
 export const createPost = (newPost) => axios.post(urls, newPost);
